@@ -1,0 +1,68 @@
+.login-bg, html {
+	height: 100%
+}
+
+.login-bg {
+	max-width: 1920px;
+	min-width: 1200px;
+	background: url(../images/login_bg.jpg) center top no-repeat;
+	position: relative
+}
+
+.login, .login-width {
+	height: 412px;
+	box-sizing: border-box
+}
+
+.login-width {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	background: url(../images/login_content_left_03.png) 0 center no-repeat;
+	width: 690px;
+	margin-top: -206px;
+	margin-left: -345px
+}
+
+.login {
+	background: url(../images/login_03.png) 0 center no-repeat;
+	margin-left: 374px;
+	width: 316px;
+	padding: 179px 0 0 45px
+}
+
+.i-g {
+	width: 223px;
+	position: relative
+}
+
+#password, #username {
+	height: 32px;
+	line-height: 34px;
+	border: none;
+	margin: 0 0 8px 33px;
+	width: 190px;
+	outline: 0;
+	background: #fff;
+	box-sizing: border-box
+}
+
+#submit {
+	margin-top: 40px;
+	border: 1px solid #2FAF8A;
+	border-radius: 5px;
+	height: 32px;
+	line-height: 32px;
+	width: 223px;
+	color: #fff;
+	background-color: #2FAF8A;
+	cursor: pointer
+}
+
+#submit:hover {
+	outline: #983943
+}
+
+#inner-editor {
+	background-color: #fff !important
+}

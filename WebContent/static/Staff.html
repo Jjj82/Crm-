@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>员工管理</title>
+<link rel="stylesheet" href="plugins/layui/css/layui.css">
+
+</head>
+
+<body class="layui-layout-body">
+	<div class="layui-layout layui-layout-admin">
+		<!-- 头部开始 -->
+		<div class="layui-header">
+			<div class="layui-logo">汇才客户关系管理系统</div>
+			<ul class="layui-nav layui-layout-right">
+				<li class="layui-nav-item">
+				<a href="javascript:;" id="username">用户	</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a href="">修改密码</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item"><a class="out">退出</a></li>
+			</ul>
+		</div>
+		<!-- 头部结束 -->
+
+		<!-- 左侧开始 -->
+		<div class="layui-side layui-bg-black">
+			<div class="layui-side-scroll">
+				<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+				<ul class="layui-nav layui-nav-tree" lay-filter="test">
+					<li class="layui-nav-item layui-nav-itemed">
+					<a class=""	href="javascript:;">CRM管理系统</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a href="Region.html">区域管理</a>
+							</dd>
+							<dd>
+								<a href="Staff.html">员工管理</a>
+							</dd>
+							<dd>
+								<a href="customer.html">客户管理</a>
+							</dd>
+						</dl>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- 左侧结束 -->
+
+		<!-- 内容主体开始 -->
+		<div class="layui-body" style="margin: 20px;">
+			<!-- 内容主体区域 -->
+			<div class="demoTable">
+				<form class="layui-form" action="">
+					<div class="layui-form-item">
+						<div class="layui-input-inline" style="width: 200px;">
+							<select id="condition" name="condition" lay-verify="required">
+								<option value="name">按姓名查找</option>
+								<option value="gender">按性别查找</option>
+							</select>
+						</div>
+						<div class="layui-input-inline" style="width: 200px;">
+							<input type="text" id="key" name="key" name="title" required
+								lay-verify="required" autocomplete="off" class="layui-input">
+						</div>
+						<a class="layui-btn" data-type="search" style="margin-left: 40px">搜索</a>
+						<a class="layui-btn" data-type="increase" style="float: right">添加</a>
+						<a class="layui-btn" data-type="daochu" style="float: right">导出</a>
+						<a class="layui-btn" data-type="daochuAll" style="float: right">导出全部</a>
+					</div>
+					<table class="layui-hide" id="show-table" lay-filter="demo">
+					</table>
+					<script type="text/html" id="barDemo">
+            			<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+           				<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+         			 </script>
+				</form>
+			</div>
+
+			<!-- 底部固定区域 -->
+			<div class="layui-footer">©汇才</div>
+			<!-- 底部固定区域结束 -->
+		</div>
+		<!-- 内容主体结束 -->
+
+		<!-- 编辑界面开始 -->
+		<div id="update" style="margin: 20px; display: none;">
+			<form class="layui-form">
+				<input type="hidden" name="id" id="id">
+				<div class="layui-form-item">
+					<label class="layui-form-label">姓名</label>
+					<div class="layui-input-block">
+						<input type="text" name="name" id="name" lay-verify="required"
+							maxlength="32" autocomplete="off" placeholder="请输入姓名"
+							class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">性别</label>
+					<div class="layui-input-block">
+						<select id="gender" name="gender" maxlength="25" lay-verify="required">
+							<option value="">请选择性别</option>
+							<option value="男">男</option>
+							<option value="女">女</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">电话</label>
+					<div class="layui-input-block">
+						<input type="text" name="telephone" id="telephone"
+							lay-verify="required" maxlength="32" autocomplete="off"
+							placeholder="请输入电话" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">日期</label>
+					<div class="layui-input-block">
+						<input type="date" id="date" name="date" lay-verify="date"
+							autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">地址</label>
+					<div class="layui-input-block">
+						<input type="text" id="address" name="address" lay-verify=""
+							autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">密码</label>
+					<div class="layui-input-block">
+						<input type="text" id="password" name="password" lay-verify=""
+							autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">角色</label>
+					<div class="layui-input-block">
+						<select id="role" name="role" lay-verify="required">
+							<option value="">请选择角色</option>
+							<option value="管理员">管理员</option>
+							<option value="普通员工">普通员工</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">备注</label>
+					<div class="layui-input-block">
+						<textarea id="remarks" name="remarks" style="display: none;"></textarea>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					</div>
+				</div>
+
+			</form>
+		</div>
+		<!-- 编辑界面结束 -->
+
+		<!-- 添加界面开始 -->
+		<div id="add" style="margin: 20px; display: none;">
+			<form class="layui-form">
+				<input type="hidden" name="id" id="id">
+				<div class="layui-form-item">
+					<label class="layui-form-label">姓名</label>
+					<div class="layui-input-block">
+						<input type="text" name="nameadd" id="nameadd"
+							lay-verify="required" maxlength="32" autocomplete="off"
+							placeholder="请输入姓名" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">性别</label>
+					<div class="layui-input-block">
+						<select id="genderadd" name="genderadd" lay-verify="required">
+							<option value="">请选择性别</option>
+							<option value="男">男</option>
+							<option value="女">女</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">电话</label>
+					<div class="layui-input-block">
+						<input type="text" name="telephoneadd" id="telephoneadd"
+							lay-verify="required" maxlength="32" autocomplete="off"
+							placeholder="请输入电话" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">日期</label>
+					<div class="layui-input-block">
+						<input type="date" id="dateadd" name="dateadd" lay-verify="date"
+							autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">地址</label>
+					<div class="layui-input-block">
+						<input type="text" id="addressadd" name="addressadd" lay-verify=""
+							autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">密码</label>
+					<div class="layui-input-block">
+						<input type="text" id="passwordadd" name="passwordadd"
+							lay-verify="" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">角色</label>
+					<div class="layui-input-block">
+						<select id="roleadd" name="roleadd" lay-verify="required">
+							<option value="">请选择角色</option>
+							<option value="管理员">管理员</option>
+							<option value="普通员工">普通员工</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">备注</label>
+					<div class="layui-input-block">
+						<textarea id="remarksadd" style="display: none;"></textarea>
+					</div>
+				</div>
+
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button class="layui-btn" lay-submit="" lay-filter="save-add">立即提交</button>
+						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- 添加界面结束 -->
+
+		<script src="plugins/layui/layui.js"></script>
+		<script src="scripts/home.js"></script>
+		<script src="plugins/jquery/jquery.min.js"></script>
+		<script src="scripts/staff.js"></script>
+		<script>
+			//JavaScript代码区域
+			layui.use('element', function() {
+				var element = layui.element;
+
+			});
+		</script>
+</body>
+
+</html>
